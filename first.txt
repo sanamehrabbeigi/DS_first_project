@@ -1,0 +1,170 @@
+#include <iostream>
+#include <string>
+#include <conio.h>
+
+using namespace std;
+
+int firstTrainArr[50], secondTrainArr[50], numberOfPassenger[2];
+
+typedef struct stack {
+	string nameOfFood;
+	struct stack * previous;
+}stack;
+
+typedef struct person {
+	string id;
+	stack * sRoot;
+	struct person * next;
+}; person* pHead = nullptr;
+
+typedef struct queue {
+	struct queue * next;
+	person * prs;
+}; queue * qHead[2];
+
+typedef struct train {
+	int station;
+	person* pRoot;
+	struct train *next;
+}; train* tHead[2];
+
+typedef struct skipList{
+	int station;
+	struct skipList * next;
+	train * down;
+}; skipList * sHead;
+
+
+void input(int n, int l)
+{
+	int m, nof;
+	person * pTemp;
+	train * tTemp;
+	string s;
+	
+	cout << "number of passenger : \n";
+	cin >> numberOfPassenger[l];
+
+	for (int i = 1; i <= n; i++)
+	{
+		train * newtrain = (train *)malloc(sizeof(train));
+		if (l == 1)
+		{
+			cout << "station :\n";
+			cin >> newtrain->station;
+		}
+		else
+			newtrain->station = i;
+		newtrain->next = NULL;
+
+		cout << "number of passengers\n";
+		cin >> m;
+		pHead = NULL;
+		for (int j = 0; j < m; j++)
+		{
+			person * newperson = (person *)malloc(sizeof(person));
+			cin >> newperson->id;
+			newperson->next = NULL;
+			cout << "number of orders & food :\n";
+			cin >> nof;
+			for (int k = 0; k < nof; k++)
+			{
+				cin >> s;
+				newperson->food.push(s);
+			}
+			if (!pHead)
+			{
+				pHead = newperson;
+				pTemp = pHead;
+			}
+			else
+			{
+				pTemp->next = newperson;
+				pTemp = newperson;
+			}
+			if (l == 0)
+				qPerson1.push(newperson);
+		}
+
+		newtrain->pRoot = pHead;
+		if (!tHead[l])
+		{
+			tHead[l] = newtrain;
+			tTemp = tHead[l];
+		}
+		else
+		{
+			tTemp->next = newtrain;
+			tTemp = newtrain;
+		}
+	}
+}
+
+void makeSkipList(int n, int l)
+{
+	// baray yek radif!!
+	int m = sqrt(n);
+	skipList * sTemp;
+	train * tTemp = tHead[l];
+	for (int i = 1; i <= n; i++)
+	{
+		if ((i % m) == 1)
+		{
+			skipList * newskipList = (skipList *)malloc(sizeof(skipList));
+			newskipList->next = NULL;
+			newskipList->down = tTemp;
+			newskipList->station = tTemp ->station;
+			if (i == 1)
+			{
+				sHead = newskipList;
+				sTemp = newskipList;
+			}
+			else
+			{
+				sTemp->next = newskipList;
+				sTemp = newskipList;
+			}
+		}
+		tTemp = tTemp->next;
+	}
+}
+
+void search(int x)
+{
+
+}
+
+void printTheNumberOfpassengers(int n, int l)
+{
+	for (int i = 0; i < n; i++) // counterasho bastegi be code por cardanesh dare!
+	{
+		cout << "Number of passengers in train" << l << " :\n";
+
+	}
+}
+
+int main()
+{
+	int n = 50;
+
+	//cin >> n;
+
+	cout << "\n first train \n";
+	input(n, 0);
+	cout << "\n second train \n";
+	input(n, 1);
+	
+	makeSkipList(n,0);
+
+	for (train * tTemp = tHead[1]; tTemp != NULL; tTemp = tTemp->next)
+	{
+		search(tTemp->station);
+	}
+
+
+	printTheNumberOfpassengers(n, 0);
+	printTheNumberOfpassengers(n, 1);
+
+	getch();
+	return 0;
+}

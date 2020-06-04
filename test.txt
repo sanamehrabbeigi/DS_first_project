@@ -1,0 +1,79 @@
+3
+
+ first train
+Number of passengers in Train1:
+4
+number of passengers who order food in station 1
+1
+passenger number1: enter your id
+1
+number of orders & food :
+1
+1-> enter food name:
+pizza1
+number of passengers who order food in station 2
+1
+passenger number1: enter your id
+2
+number of orders & food :
+1
+1-> enter food name:
+pizza2
+number of passengers who order food in station 3
+2
+passenger number1: enter your id
+3
+number of orders & food :
+2
+1-> enter food name:
+haha
+2-> enter food name:
+hihi
+passenger number2: enter your id
+4
+number of orders & food :
+0
+
+ second train
+Number of passengers in Train2:
+3
+station :
+2
+number of passengers who order food in station 2
+2
+passenger number1: enter your id
+5
+number of orders & food :
+1
+1-> enter food name:
+a
+passenger number2: enter your id
+6
+number of orders & food :
+3
+1-> enter food name:
+b
+2-> enter food name:
+c
+3-> enter food name:
+d
+station :
+3
+number of passengers who order food in station 3
+0
+station :
+1
+number of passengers who order food in station 1
+1
+passenger number1: enter your id
+85
+number of orders & food :
+4
+1-> enter food name:
+1
+2-> enter food name:
+2
+3-> enter food name:
+3
+4-> enter food name:
+4

@@ -1,0 +1,28 @@
+void makeSkipList(int n, int l)
+{
+	// baray yek radif!!
+	int m = sqrt(n);
+	skipList * sTemp;
+	train * tTemp = tHead[l];
+	for (int i = 1; i <= n; i++)
+	{
+		if ((i % m) == 1)
+		{
+			skipList * newskipList = (skipList *)malloc(sizeof(skipList));
+			newskipList->next = NULL;
+			newskipList->down = tTemp;
+			newskipList->station = tTemp ->station;
+			if (i == 1)
+			{
+				sHead = newskipList;
+				sTemp = newskipList;
+			}
+			else
+			{
+				sTemp->next = newskipList;
+				sTemp = newskipList;
+			}
+		}
+		tTemp = tTemp->next;
+	}
+}

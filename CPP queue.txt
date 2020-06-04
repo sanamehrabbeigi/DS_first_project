@@ -1,0 +1,71 @@
+//
+// Created by ali on 12/19/2019.
+//
+
+#include "Queue.h"
+#include "person.h"
+
+
+Queue::Queue()
+{
+    // cout << "constructor is called!\n";
+    sz = 0;
+    arr = new person* [sz];
+}
+
+Queue::~Queue()
+{
+    // cout << "distructor is called!\n";
+    delete[] arr;
+}
+
+void Queue::push(person*  data)
+{
+    person** temp = new person *[sz] ;
+    temp = arr;
+    sz++;
+    arr = new person* [sz];
+    arr = temp;
+    arr[sz - 1] = data;
+}
+
+person* Queue ::front()
+{
+    return arr[0];
+}
+
+person* Queue::rear()
+{
+    return arr[sz-1];
+}
+
+void Queue::pop()
+{
+	person** temp = new person *[sz];
+	temp = arr;
+	sz--;
+	arr = new person*[sz];
+	for (long long i = 0; i < sz; i++)
+		arr[i] = temp[i + 1];
+}
+
+int Queue::search(person* data)
+{
+    int h = -1;
+    for (long long i = 0; i < sz; i++)
+        if (arr[i] == data)
+            h = i;
+    return h;
+}
+
+int Queue::size()
+{
+    return sz;
+}
+
+void Queue::showQueue()
+{
+    for (long long i = 0; i < sz; i++)
+        cout << arr[i] << " ";
+    cout << "\n";
+}
